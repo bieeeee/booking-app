@@ -1,9 +1,15 @@
+import Navbar from "../../components/navbar/Navbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 import "./home.scss";
 
 function Home() {
   return (
     <div className="home">
-      <h1 className="title">Bie</h1>
+      <Sidebar />
+      {/* <Navbar /> */}
+      <div className="homeContainer">
+        container
+      </div>
     </div>
   )
 }
