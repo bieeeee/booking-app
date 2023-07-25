@@ -11,12 +11,15 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import { Link } from "react-router-dom"
 
 function Sidebar() {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">BiexAdmin</span>
+        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+          <span className="logo">BiexAdmin</span>
+        </Link>
       </div>
       <hr />
       <div className="center">
@@ -29,7 +32,9 @@ function Sidebar() {
           <p className="title">LISTS</p>
           <li>
             <PersonOutlineIcon className="icon" />
-            <span>Users</span>
+            <Link to="/users" style={{ color: "inherit", textDecoration: "none" }}>
+              <span>Users</span>
+            </Link>
           </li>
           <li>
             <StoreIcon className="icon" />
