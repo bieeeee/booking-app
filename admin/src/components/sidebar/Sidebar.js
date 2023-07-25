@@ -30,16 +30,18 @@ function Sidebar() {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          <li>
-            <PersonOutlineIcon className="icon" />
-            <Link to="/users" style={{ color: "inherit", textDecoration: "none" }}>
+          <Link to="/users" style={{ color: "inherit", textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
               <span>Users</span>
-            </Link>
-          </li>
-          <li>
-            <StoreIcon className="icon" />
-            <span>Products</span>
-          </li>
+            </li>
+          </Link>
+          <Link to="/products" style={{ color: "inherit", textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Products</span>
+            </li>
+          </Link>
           <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
