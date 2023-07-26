@@ -46,10 +46,12 @@ function Sidebar() {
               <span>Hotels</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Rooms</span>
-          </li>
+          <Link to="/rooms" style={{ color: "inherit", textDecoration: "none" }}>
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Rooms</span>
+            </li>
+          </Link>
           <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
@@ -88,8 +90,8 @@ function Sidebar() {
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption" onClick={()=>dispatch({type: "LIGHT"})}></div>
-        <div className="colorOption" onClick={()=>dispatch({type: "DARK"})}></div>
+        <div className="colorOption" onClick={() => dispatch({ type: "LIGHT" })}></div>
+        <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}></div>
       </div>
     </div>
   )
