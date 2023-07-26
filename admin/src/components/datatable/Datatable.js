@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom"
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-function Datatable() {
+function Datatable({columns}) {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const { data, setData, loading, error } = useFetch(`/${path}`);
@@ -41,9 +41,9 @@ function Datatable() {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
+        Add New {path}
         <Link
-          to="/users/new"
+          to={`/${path}/new`}
           style={{ textDecoration: "none" }}
           className="link">
           Add New
@@ -51,7 +51,7 @@ function Datatable() {
       </div>
       <DataGrid
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={columns.concat(actionColumn)}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 9 },
