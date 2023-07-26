@@ -1,13 +1,23 @@
 import "./datatable.scss";
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns, userRows } from "../../datatablesource.js";
-import { Link } from "react-router-dom"
-import { useState } from "react";
+import { userColumns } from "../../datatablesource.js";
+import { Link, useLocation } from "react-router-dom"
+import useFetch from "../../hooks/useFetch";
+import axios from "axios";
 
 function Datatable() {
-  const [data, setData] = useState(userRows);
-  const handleDelete = (id) => {
-    setData(data.filter(item => item.id !== id));
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const { data, setData, loading, error } = useFetch(`/${path}`);
+
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/${path}/${id}`);
+      setData(data.filter((item) => item._id !== id));
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   const actionColumn = [
@@ -21,7 +31,7 @@ function Datatable() {
             <Link to="/users/test" style={{ color: "inherit", textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>Delete</div>
+            <div className="deleteButton" onClick={() => handleDelete(params.row._id)}>Delete</div>
           </div>
         )
       }
@@ -50,6 +60,7 @@ function Datatable() {
         pageSizeOptions={[9]}
         checkboxSelection
         className="datagrid"
+        getRowId={(row) => row._id}
       />
     </div>
   )
