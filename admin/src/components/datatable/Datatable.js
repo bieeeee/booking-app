@@ -11,6 +11,7 @@ function Datatable({columns}) {
   const { data, setData, loading, error } = useFetch(`/${path}`);
 
 
+
   const handleDelete = async (id) => {
     try {
       await axios.delete(`/${path}/${id}`);
@@ -41,7 +42,7 @@ function Datatable({columns}) {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New {path}
+        {path.toUpperCase()}
         <Link
           to={`/${path}/new`}
           style={{ textDecoration: "none" }}
