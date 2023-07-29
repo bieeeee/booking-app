@@ -23,7 +23,7 @@ function NewRoom({ inputs, title }) {
       { number: roomNumber }
     ))
     try {
-      const newRoom = { ...info, roomNumbers }
+      const newRoom = { ...info, roomNumbers: roomNumbers, hotel: hotelId }
       await axios.post(`/rooms/${hotelId}`, newRoom)
     } catch (err) {
       console.log(err)
