@@ -15,6 +15,8 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
 import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
+import NewHotel from "./pages/newHotel/NewHotel";
+import NewRoom from "./pages/newRoom/NewRoom";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -40,10 +42,10 @@ function App() {
           <Route path="/users/new" element={<ProtectedRoute><New inputs={userInputs} title="Add New User" /></ProtectedRoute>} />
           <Route path="/hotels" element={<ProtectedRoute><List columns={hotelColumns} /></ProtectedRoute>} />
           <Route path="/hotels/:hotelId" element={<ProtectedRoute><Single /></ProtectedRoute>} />
-          <Route path="/hotels/new" element={<ProtectedRoute><New inputs={hotelInputs} title="Add New Hotel" /></ProtectedRoute>} />
+          <Route path="/hotels/new" element={<ProtectedRoute><NewHotel inputs={hotelInputs} title="Add New Hotel" /></ProtectedRoute>} />
           <Route path="/rooms" element={<ProtectedRoute><List columns={roomColumns} /></ProtectedRoute>} />
           <Route path="/rooms/:roomId" element={<ProtectedRoute><Single /></ProtectedRoute>} />
-          <Route path="/rooms/:hotelId" element={<ProtectedRoute><New inputs={roomInputs} title="Add New Room" /></ProtectedRoute>} />
+          <Route path="/rooms/new" element={<ProtectedRoute><NewRoom inputs={roomInputs} title="Add New Room" /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </div>
