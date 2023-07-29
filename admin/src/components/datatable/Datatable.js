@@ -5,16 +5,21 @@ import { Link, useLocation } from "react-router-dom"
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-function Datatable({columns}) {
+function Datatable({ columns }) {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const { data, setData, loading, error } = useFetch(`/${path}`);
 
-
-
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/${path}/${id}`);
+      if (path === "rooms") {
+        const { data } = await axios.get("/rooms")
+        const room = data.find(r => r._id === id)
+        const hotelId = room.hotel
+        await axios.delete(`/rooms/${id}/${hotelId}`);
+      } else {
+        await axios.delete(`/${path}/${id}`);
+      }
       setData(data.filter((item) => item._id !== id));
     } catch (err) {
       console.error(err);
@@ -55,7 +60,7 @@ function Datatable({columns}) {
         columns={columns.concat(actionColumn)}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 9 },
+            paginationModel: { page: 1, pageSize: 9 },
           },
         }}
         pageSizeOptions={[9]}
